@@ -2,14 +2,15 @@ import os
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 
-from config import EMBEDDING_MODEL_NAME, EMBEDDING_DEVICE, FAISS_INDEX_PATH
+from config.settings import get_settings
 import data_loader
 
 def get_embedding_model():
     """Initializes and returns the sentence transformer embedding model."""
+    settings = get_settings()
     return HuggingFaceEmbeddings(
-        model_name=EMBEDDING_MODEL_NAME,
-        model_kwargs={'device': EMBEDDING_DEVICE}
+        model_name=settings.embedding_model_name,
+        model_kwargs={'device': settings.embedding_device}
     )
 
 def create_and_save_vector_store():
@@ -30,18 +31,18 @@ def create_and_save_vector_store():
         
     texts = data_loader.split_documents(documents)
     
-    print(f"Initializing embedding model: {EMBEDDING_MODEL_NAME}")
+    settings = get_settings()
+    print(f"Initializing embedding model: {settings.embedding_model_name}")
     embeddings = get_embedding_model()
     
     print("Creating FAISS vector store... (This may take a while for large document sets)")
     try:
         vector_store = FAISS.from_documents(texts, embeddings)
         
-        print(f"Saving FAISS index to: {FAISS_INDEX_PATH}")
-        # Ensure the directory exists before saving
-        if not os.path.exists(FAISS_INDEX_PATH):
-            os.makedirs(FAISS_INDEX_PATH)
-        vector_store.save_local(FAISS_INDEX_PATH)
+        settings = get_settings()
+        print(f"Saving FAISS index to: {settings.faiss_index_path}")
+        os.makedirs(settings.faiss_index_path, exist_ok=True)
+        vector_store.save_local(settings.faiss_index_path)
         
         print("--- Ingestion Complete ---")
     except Exception as e:
@@ -54,19 +55,18 @@ def load_vector_store():
     Returns:
         FAISS: The loaded vector store object, or None if it fails.
     """
-    if not os.path.exists(FAISS_INDEX_PATH):
-        print(f"Error: FAISS index not found at '{FAISS_INDEX_PATH}'.")
+    settings = get_settings()
+    if not os.path.exists(settings.faiss_index_path):
+        print(f"Error: FAISS index not found at '{settings.faiss_index_path}'.")
         print("Please run the ingestion process first with `python main.py ingest`")
         return None
 
     print("Loading the vector store...")
     try:
         embeddings = get_embedding_model()
-        # The `allow_dangerous_deserialization` is required for loading FAISS indexes
-        # created with different environments. It's safe in this context.
         vector_store = FAISS.load_local(
-            FAISS_INDEX_PATH, 
-            embeddings, 
+            settings.faiss_index_path, 
+            embeddings,
             allow_dangerous_deserialization=True
         )
         print("Vector store loaded successfully.")

@@ -1,33 +1,32 @@
-import os
 import glob
+from pathlib import Path
 from tqdm import tqdm
 from typing import List
+from config.settings import get_settings
 
 from langchain.docstore.document import Document
 from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-from config import CHUNK_SIZE, CHUNK_OVERLAP, KNOWLEDGE_BASE_DIR
 
-def load_documents(directory: str = KNOWLEDGE_BASE_DIR) -> List[Document]:
+def load_documents() -> List[Document]:
     """
-    Loads all supported documents (.pdf, .txt) from the specified directory.
-    
-    Args:
-        directory (str): The path to the directory containing documents.
+    Loads all supported documents (.pdf, .txt) from the knowledge base directory.
 
     Returns:
         List[Document]: A list of loaded document objects.
     """
-    documents = []
-    file_paths = glob.glob(os.path.join(directory, "*.pdf")) + glob.glob(os.path.join(directory, "*.txt"))
+    settings = get_settings()
+    knowledge_base_path = Path(settings.knowledge_base_dir)
+    file_paths = glob.glob(str(knowledge_base_path / "*.pdf")) + glob.glob(str(knowledge_base_path / "*.txt"))
     
     if not file_paths:
-        print(f"No .pdf or .txt files found in '{directory}'. Please add your knowledge base files.")
+        print(f"No .pdf or .txt files found in '{settings.knowledge_base_dir}'. Please add your knowledge base files.")
         return []
 
     print(f"Found {len(file_paths)} documents to ingest.")
 
+    documents = []
     for file_path in tqdm(file_paths, desc="Loading Documents"):
         try:
             if file_path.endswith(".pdf"):
@@ -52,8 +51,9 @@ def split_documents(documents: List[Document]) -> List[Document]:
     Returns:
         List[Document]: A list of smaller document chunks.
     """
+    settings = get_settings()
     print("Splitting documents into chunks...")
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=settings.chunk_size, chunk_overlap=settings.chunk_overlap)
     texts = text_splitter.split_documents(documents)
     print(f"Created {len(texts)} text chunks.")
     return texts

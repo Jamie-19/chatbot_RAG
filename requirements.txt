@@ -5,3 +5,8 @@ pypdf
 sentence-transformers
 faiss-cpu
 tqdm
+python-dotenv
+fastapi
+uvicorn[standard]
+python-multipart
+websockets
