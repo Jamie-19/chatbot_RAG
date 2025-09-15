@@ -5145,3 +5145,57 @@ Our Mission...
 2025-09-15 13:28:44 - __main__ - INFO - main:173 - Debug mode: False
 2025-09-15 13:34:11 - __main__ - INFO - main:172 - Starting RAG Chatbot v1.0.0
 2025-09-15 13:34:11 - __main__ - INFO - main:173 - Debug mode: False
+2025-09-15 15:17:27 - __main__ - INFO - main:172 - Starting RAG Chatbot v1.0.0
+2025-09-15 15:17:27 - __main__ - INFO - main:173 - Debug mode: False
+2025-09-15 15:17:27 - __main__ - INFO - handle_chat:34 - Starting chat session
+2025-09-15 15:17:27 - utils.warmup - INFO - warmup_system:41 - Starting system warmup...
+2025-09-15 15:17:30 - sentence_transformers.SentenceTransformer - INFO - __init__:227 - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-15 15:17:35 - faiss.loader - INFO - <module>:131 - Loading faiss with AVX2 support.
+2025-09-15 15:17:35 - faiss.loader - INFO - <module>:133 - Successfully loaded faiss with AVX2 support.
+2025-09-15 15:17:35 - utils.warmup - INFO - warmup_vector_store:33 - Vector store warmed up successfully
+2025-09-15 15:17:58 - rag_pipeline - INFO - get_ollama_llm:32 - Successfully connected to Ollama with model: mistral
+2025-09-15 15:17:58 - rag_pipeline - INFO - get_ollama_llm:33 - Test response:  Hello! How can I help you today? If you have any ...
+2025-09-15 15:18:32 - utils.warmup - INFO - warmup_ollama_connection:20 - Ollama connection warmed up successfully
+2025-09-15 15:18:32 - utils.warmup - INFO - warmup_system:47 - System warmup completed successfully
+2025-09-15 15:18:34 - rag_pipeline - INFO - log_retrieved_docs:138 - Retrieved 2 documents for processing
+2025-09-15 15:18:34 - utils.performance - ERROR - wrapper:29 - Function invoke_chain failed after 0.00s: 'chat_history'
+2025-09-15 15:18:34 - __main__ - ERROR - handle_chat:113 - Error processing query: 'chat_history'
+2025-09-15 15:20:49 - __main__ - INFO - handle_chat:118 - Chat session ended by keyboard interrupt
+2025-09-15 15:36:37 - __main__ - INFO - main:193 - Starting RAG Chatbot v1.0.0
+2025-09-15 15:36:37 - __main__ - INFO - main:194 - Debug mode: False
+2025-09-15 15:36:37 - __main__ - INFO - handle_chat:34 - Starting chat session
+2025-09-15 15:36:37 - utils.warmup - INFO - warmup_system:41 - Starting system warmup...
+2025-09-15 15:36:40 - sentence_transformers.SentenceTransformer - INFO - __init__:227 - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-15 15:36:46 - faiss.loader - INFO - <module>:131 - Loading faiss with AVX2 support.
+2025-09-15 15:36:46 - faiss.loader - INFO - <module>:133 - Successfully loaded faiss with AVX2 support.
+2025-09-15 15:36:46 - utils.warmup - INFO - warmup_vector_store:33 - Vector store warmed up successfully
+2025-09-15 15:37:02 - rag_pipeline - INFO - get_ollama_llm:32 - Successfully connected to Ollama with model: mistral
+2025-09-15 15:37:02 - rag_pipeline - INFO - get_ollama_llm:33 - Test response:  Hello! How can I help you today? Is there somethi...
+2025-09-15 15:37:26 - utils.warmup - INFO - warmup_ollama_connection:20 - Ollama connection warmed up successfully
+2025-09-15 15:37:26 - utils.warmup - INFO - warmup_system:47 - System warmup completed successfully
+2025-09-15 15:37:32 - rag_pipeline - INFO - log_retrieved_docs:138 - Retrieved 2 documents for processing
+2025-09-15 15:37:46 - utils.performance - WARNING - wrapper:22 - Slow function invoke_chain: 14.30s
+2025-09-15 15:37:46 - __main__ - INFO - handle_chat:123 - Query processed successfully in 14.30s
+2025-09-15 15:37:46 - __main__ - WARNING - handle_chat:127 - Slow response detected: 14.30s
+2025-09-15 15:37:59 - rag_pipeline - INFO - log_retrieved_docs:138 - Retrieved 2 documents for processing
+2025-09-15 15:38:13 - utils.performance - WARNING - wrapper:22 - Slow function invoke_chain: 13.59s
+2025-09-15 15:38:13 - __main__ - INFO - handle_chat:123 - Query processed successfully in 13.59s
+2025-09-15 15:38:13 - __main__ - WARNING - handle_chat:127 - Slow response detected: 13.59s
+2025-09-15 15:38:23 - rag_pipeline - INFO - log_retrieved_docs:138 - Retrieved 2 documents for processing
+2025-09-15 15:38:48 - utils.performance - WARNING - wrapper:22 - Slow function invoke_chain: 24.92s
+2025-09-15 15:38:48 - __main__ - INFO - handle_chat:123 - Query processed successfully in 24.92s
+2025-09-15 15:38:48 - __main__ - WARNING - handle_chat:127 - Slow response detected: 24.92s
+2025-09-15 15:38:59 - rag_pipeline - INFO - log_retrieved_docs:138 - Retrieved 2 documents for processing
+2025-09-15 15:39:37 - utils.performance - WARNING - wrapper:22 - Slow function invoke_chain: 37.60s
+2025-09-15 15:39:37 - __main__ - INFO - handle_chat:123 - Query processed successfully in 37.60s
+2025-09-15 15:39:37 - __main__ - WARNING - handle_chat:127 - Slow response detected: 37.60s
+2025-09-15 15:39:47 - __main__ - INFO - handle_chat:59 - Chat session ended by user
+2025-09-15 15:39:54 - __main__ - INFO - main:193 - Starting RAG Chatbot v1.0.0
+2025-09-15 15:39:54 - __main__ - INFO - main:194 - Debug mode: False
+2025-09-15 15:39:54 - __main__ - INFO - handle_ingest:19 - Starting document ingestion process
+2025-09-15 15:39:57 - sentence_transformers.SentenceTransformer - INFO - __init__:227 - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-15 15:40:03 - faiss.loader - INFO - <module>:131 - Loading faiss with AVX2 support.
+2025-09-15 15:40:03 - faiss.loader - INFO - <module>:133 - Successfully loaded faiss with AVX2 support.
+2025-09-15 15:40:03 - __main__ - INFO - handle_ingest:23 - Document ingestion completed successfully
+2025-09-15 15:40:12 - __main__ - INFO - main:193 - Starting RAG Chatbot v1.0.0
+2025-09-15 15:40:12 - __main__ - INFO - main:194 - Debug mode: False

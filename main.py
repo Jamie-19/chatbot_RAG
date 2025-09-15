@@ -49,6 +49,8 @@ def handle_chat():
     print("Chatbot is ready! Type 'exit' or 'quit' to end the session.")
     print("---")
     
+    chat_history = []
+
     while True:
         try:
             query = input("> ")
@@ -73,29 +75,48 @@ def handle_chat():
             
             try:
                 # Check cache first
-                cached_response = get_cached_response(validated_query)
+                # Note: Caching with history requires a more complex key.
+                # For now, we bypass cache if history is present.
+                history_key = "\n".join([f"{turn['role']}: {turn['content']}" for turn in chat_history])
+                cached_response = get_cached_response(f"{history_key}\nUser: {validated_query}")
+
                 if cached_response:
                     response_time = time.time() - start_time
                     print("\nBot:", cached_response)
                     print("-" * 50)
                     print("(Response from cache)")
                     
-                    # Record successful request
                     metrics.record_request(success=True, response_time=response_time)
                     logger.info(f"Query processed from cache in {response_time:.2f}s")
+                    
+                    # Update history from cached response
+                    chat_history.append({"role": "user", "content": validated_query})
+                    chat_history.append({"role": "assistant", "content": cached_response})
                 else:
+                    # Prepare history for the chain
+                    history_str = "\n".join([f"{turn['role']}: {turn['content']}" for turn in chat_history])
+
                     # Get and print the response from the chain
                     @performance_monitor
-                    def invoke_chain(query):
-                        return rag_chain.invoke(query)
-                    response = invoke_chain({"question": validated_query})
+                    def invoke_chain(inputs):
+                        return rag_chain.invoke(inputs)
+                    
+                    response = invoke_chain({
+                        "question": validated_query,
+                        "chat_history": history_str
+                    })
                     response_time = time.time() - start_time
                     
                     print("\nBot:", response)
                     print("-" * 50)
                     
-                    # Cache the response
-                    cache_query_response(validated_query, response)
+                    # Update history
+                    chat_history.append({"role": "user", "content": validated_query})
+                    chat_history.append({"role": "assistant", "content": response})
+                    
+                    # Cache the new response
+                    cache_key = f"{history_key}\nUser: {validated_query}"
+                    cache_query_response(cache_key, response)
                     
                     # Record successful request
                     metrics.record_request(success=True, response_time=response_time)
