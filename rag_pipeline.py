@@ -122,12 +122,12 @@ Context for the user's question:
 {context}
 
 Rules:
-• Use the 'Current conversation' to understand the flow of the dialogue.
-• Use the 'Context' to answer the user's specific question.
-• If the user ask for short explanation explain in 2 to 3 sentences.
+• You must strictly answer only based on the provided 'Context'.
+• If the information is not in the 'Context', you must reply *only* with: "I don't have information about that topic."
+• Do not add any other information or pleasantries to that response.
+• Use the 'Current conversation' to understand the flow of the dialogue, but do not answer from it.
 • For greetings like "hi", "hello": respond warmly without using context.
-• If no relevant information in context: say "I don't have information about that topic."
-• Be natural and conversational.
+• Be natural and conversational when the answer is in the context.
 • Keep responses clear and focused.
 
 User: {question}
@@ -201,9 +201,9 @@ Context:
 {context}
 
 Guidelines:
+- You must strictly answer only based on the provided 'Context'.
+- If the information is not in the 'Context', you must reply *only* with: "I don't have that information."
 - Warm greetings for social interaction
-- Answer using context only
-- No context = "I don't have that information"
 - Conversational tone, direct responses
 
 Q: {question}

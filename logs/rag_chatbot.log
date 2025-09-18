@@ -5199,3 +5199,18 @@ Our Mission...
 2025-09-15 15:40:03 - __main__ - INFO - handle_ingest:23 - Document ingestion completed successfully
 2025-09-15 15:40:12 - __main__ - INFO - main:193 - Starting RAG Chatbot v1.0.0
 2025-09-15 15:40:12 - __main__ - INFO - main:194 - Debug mode: False
+2025-09-15 19:42:41 - __main__ - INFO - main:193 - Starting RAG Chatbot v1.0.0
+2025-09-15 19:42:41 - __main__ - INFO - main:194 - Debug mode: False
+2025-09-15 19:52:23 - __main__ - INFO - main:193 - Starting RAG Chatbot v1.0.0
+2025-09-15 19:52:23 - __main__ - INFO - main:194 - Debug mode: False
+2025-09-15 19:54:37 - __main__ - INFO - main:193 - Starting RAG Chatbot v1.0.0
+2025-09-15 19:54:37 - __main__ - INFO - main:194 - Debug mode: False
+2025-09-15 20:29:20 - __main__ - INFO - main:193 - Starting RAG Chatbot v1.0.0
+2025-09-15 20:29:20 - __main__ - INFO - main:194 - Debug mode: False
+2025-09-15 20:29:20 - __main__ - INFO - handle_ingest:19 - Starting document ingestion process
+2025-09-15 20:29:23 - sentence_transformers.SentenceTransformer - INFO - __init__:227 - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-09-15 20:29:30 - faiss.loader - INFO - <module>:131 - Loading faiss with AVX2 support.
+2025-09-15 20:29:30 - faiss.loader - INFO - <module>:133 - Successfully loaded faiss with AVX2 support.
+2025-09-15 20:29:30 - __main__ - INFO - handle_ingest:23 - Document ingestion completed successfully
+2025-09-15 20:29:52 - __main__ - INFO - main:193 - Starting RAG Chatbot v1.0.0
+2025-09-15 20:29:52 - __main__ - INFO - main:194 - Debug mode: False
